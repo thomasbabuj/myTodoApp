@@ -37,7 +37,7 @@
 					</ion-item>
 				</ion-list -->
 				    <ion-list option-buttons="deleteItemButton">
-				      <ion-item ng-repeat="task in activeProject.tasks" ng-click="markCompleted($index)">
+				      <ion-item ng-repeat="task in activeProject.tasks" ng-click="markCompleted(task)" item="item">
 				        {{task.title}}
 				        <i ng-hide="!task.checked" style="float: right" class="icon ion-checkmark"></i>
 				      </ion-item>

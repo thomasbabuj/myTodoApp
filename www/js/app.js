@@ -71,7 +71,7 @@ $scope.deleteItemButton = [
 {
 text: 'Delete',
 type: 'button-assertive',
-onTap: function(item) {
+onClick: function(item) {
 alert('Edit Item: ' + item.id);
 }
 }];
@@ -146,7 +146,7 @@ alert('Edit Item: ' + item.id);
 
 
 		$scope.markCompleted = function(task) {
-			console.log ("Mark completed " + task);			
+			console.log ("Mark completed " + task.id);			
 			$scope.activeProject.tasks.splice ( $scope.activeProject.tasks.indexOf(task), 0);
 			console.log ( "current project tasks" +$scope.activeProject.tasks );
 
