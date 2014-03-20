@@ -55,20 +55,48 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 			$scope.selectProject(newProject, $scope.projects.length -1);
 		}
 
+	
+		$scope.taskButtons = [{
+			text : 'Delete',
+			type : 'button-assertive',
+			onTap : function(task) {
+				console.log ('Delete Task' + task.id);
+			},
+			onClick : function(task) {
+				console.log ("delete onclick");
+			}
+		}];
+
+$scope.deleteItemButton = [
+{
+text: 'Delete',
+type: 'button-assertive',
+onTap: function(item) {
+alert('Edit Item: ' + item.id);
+}
+}];
+
 		// Load or Initializze projects
 		$scope.projects = Projects.all();
 
-		console.log ("Type check " + typeof($scope.projects));
-
+		/*console.log ("Type check " + typeof($scope.projects));
 		console.log ($scope.projects);
-
-		// Grab the last active, or the first project
 		console.log ("Last active Index = " +Projects.getLastActiveIndex());
 		console.log ("Scope Projects  " + $scope.projects);
+
+		*/
 		
+		// Grab the last active, or the first project
+
 		$scope.activeProject = $scope.projects[Projects.getLastActiveIndex()];
+
+
+
+		//console.log ($scope.activeProject.tasks[1].title = "task 1- office");
+
+		//console.log( $scope.projects[Projects.getLastActiveIndex()].tasks = 
 		
-		console.log ("Scope Active Project =" + $scope.activeProject);
+		//console.log ("Scope Active Project =" + $scope.activeProject);
 
 		// Called to create a new project
 		$scope.newProject = function() {
@@ -106,6 +134,24 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 
 			task.title = "";
 		};
+
+		$scope.taskDelete = function(task) {
+			
+			console.log ("Task Id " + task );
+
+			//$scope.activeProject.tasks.splice ( $scope.activeProject.tasks.indexOf(0), 1);
+
+
+		}
+
+
+		$scope.markCompleted = function(task) {
+			console.log ("Mark completed " + task);			
+			$scope.activeProject.tasks.splice ( $scope.activeProject.tasks.indexOf(task), 0);
+			console.log ( "current project tasks" +$scope.activeProject.tasks );
+
+			//$scope.projects[Projects.getLastActiveIndex()].tasks = 
+		}
 
 
 		$scope.newTask = function() {
