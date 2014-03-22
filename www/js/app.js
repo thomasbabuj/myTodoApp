@@ -146,11 +146,19 @@ alert('Edit Item: ' + item.id);
 
 
 		$scope.markCompleted = function(task) {
-			console.log ("Mark completed " + task.id);			
-			$scope.activeProject.tasks.splice ( $scope.activeProject.tasks.indexOf(task), 0);
-			console.log ( "current project tasks" +$scope.activeProject.tasks );
+					
+			var currentProjectTask = $scope.activeProject.tasks;
+					
+			currentProjectTask.splice ( currentProjectTask.indexOf(task), 1);
 
-			//$scope.projects[Projects.getLastActiveIndex()].tasks = 
+			console.log ($scope.projects[Projects.getLastActiveIndex()].tasks );
+
+			//console.log ($scope.activeProject.title);
+
+			Projects.save($scope.projects);
+
+
+
 		}
 
 
