@@ -27,22 +27,17 @@
 				<!-- New Task button -->
 				<button class="button button-icon" ng-click="newTask()">
 					<i class="icon ion-compose"></i>
-				</button>
+				</button>				
 			</div>
 			<ion-content has-header="true" scroll="false">
 			<!-- Task list -->
-				<!-- ion-list show-delete="true" option-buttons="taskButtons" >
-					<ion-item ng-repeat="task in activeProject.tasks" item="task" ng-click="taskDelete($index)">
-						{{task.title}}
-					</ion-item>
-				</ion-list -->
-				    <ion-list option-buttons="deleteItemButton">
-				      <ion-item ng-repeat="task in activeProject.tasks" ng-click="markCompleted(task)" item="item">
-				        {{task.title}}
-				        <i ng-hide="!task.checked" style="float: right" class="icon ion-checkmark"></i>
-				      </ion-item>
-				    </ion-list>
-			</ion-content>
+			<ion-list option-buttons="taskButtons">
+        		<ion-item ng-repeat="task in activeProject.tasks" 
+                 	 item="task">
+          				 {{ task.title }}
+        		</ion-item>
+      		</ion-list>
+      		</ion-content>
 
 		</ion-pane>
 		<!-- Left Menu -->

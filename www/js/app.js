@@ -55,48 +55,25 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 			$scope.selectProject(newProject, $scope.projects.length -1);
 		}
 
-	
-		$scope.taskButtons = [{
-			text : 'Delete',
-			type : 'button-assertive',
-			onTap : function(task) {
-				console.log ('Delete Task' + task.id);
-			},
-			onClick : function(task) {
-				console.log ("delete onclick");
-			}
-		}];
 
-$scope.deleteItemButton = [
-{
-text: 'Delete',
-type: 'button-assertive',
-onClick: function(item) {
-alert('Edit Item: ' + item.id);
-}
-}];
+		$scope.taskButtons = [
+	    {
+	      text: 'Delete',
+	      type: 'button-assertive',
+	      onTap: function(task) {
+		        var currentProjectTask = $scope.activeProject.tasks;
+						
+				currentProjectTask.splice ( currentProjectTask.indexOf(task), 1);
+				Projects.save($scope.projects);
+	      }
+
+	    }];
 
 		// Load or Initializze projects
 		$scope.projects = Projects.all();
-
-		/*console.log ("Type check " + typeof($scope.projects));
-		console.log ($scope.projects);
-		console.log ("Last active Index = " +Projects.getLastActiveIndex());
-		console.log ("Scope Projects  " + $scope.projects);
-
-		*/
 		
 		// Grab the last active, or the first project
-
 		$scope.activeProject = $scope.projects[Projects.getLastActiveIndex()];
-
-
-
-		//console.log ($scope.activeProject.tasks[1].title = "task 1- office");
-
-		//console.log( $scope.projects[Projects.getLastActiveIndex()].tasks = 
-		
-		//console.log ("Scope Active Project =" + $scope.activeProject);
 
 		// Called to create a new project
 		$scope.newProject = function() {
@@ -135,32 +112,6 @@ alert('Edit Item: ' + item.id);
 			task.title = "";
 		};
 
-		$scope.taskDelete = function(task) {
-			
-			console.log ("Task Id " + task );
-
-			//$scope.activeProject.tasks.splice ( $scope.activeProject.tasks.indexOf(0), 1);
-
-
-		}
-
-
-		$scope.markCompleted = function(task) {
-					
-			var currentProjectTask = $scope.activeProject.tasks;
-					
-			currentProjectTask.splice ( currentProjectTask.indexOf(task), 1);
-
-			console.log ($scope.projects[Projects.getLastActiveIndex()].tasks );
-
-			//console.log ($scope.activeProject.title);
-
-			Projects.save($scope.projects);
-
-
-
-		}
-
 
 		$scope.newTask = function() {
 			$scope.taskModal.show();
@@ -191,47 +142,6 @@ alert('Edit Item: ' + item.id);
 			}
 		});
 
-
-
-
-
-
-		/*$scope.tasks = [
-			{ title : 'Collect coins' },
-			{ title : 'Eat mushrooms'},
-			{ title : 'Get high enough to grab the flag'},
-			{ title : 'Find the Princess'}
-		]; 
-
-		$scope.tasks = [];
-
-		// Create and load the Model
-		$ionicModal.fromTemplateUrl('new-task.html', function(modal){
-			$scope.taskModal = modal;
-			console.log ( modal );
-		}, {
-			scope : $scope,
-			animation : 'slide-in-up'
-		});
-
-		// Called when the form is submitted
-		$scope.createTask = function(task) {
-			$scope.tasks.push({
-				title : task.title
-			});
-			$scope.taskModal.hide();
-			task.title ="";
-		};
-
-		// Open our new task model
-		$scope.newTask = function(){
-			$scope.taskModal.show();
-		}
-
-		$scope.closeNewTask = function() {
-			$scope.taskModal.hide();
-		}  */
-
-	});
+});
 
 
