@@ -124,9 +124,6 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 
 		$scope.createTask = function(task) {
 
-			alert( "Title " + task.title + " Reminder = " + task.remainder + " When =" + task.date);
-
-
 			if (!$scope.activeProject || !task) {
 				return;
 			}
@@ -147,10 +144,16 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 
 
 		$scope.newTask = function() {
+			$scope.task.title = "";
+			$scope.task.reminder = false;
+			$scope.task.when = "";
+			$scope.task.description = "";
 			$scope.taskModal.show();
 		}
 
 		$scope.onEditTask = function(task){
+
+			alert( "in edit task");
 
 			var currentProjectTask = $scope.activeProject.tasks;
 			 $scope.currentProjectTaskId = currentProjectTask.indexOf(task); 
