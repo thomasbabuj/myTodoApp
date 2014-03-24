@@ -153,8 +153,6 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 
 		$scope.onEditTask = function(task){
 
-			alert( "in edit task");
-
 			var currentProjectTask = $scope.activeProject.tasks;
 			 $scope.currentProjectTaskId = currentProjectTask.indexOf(task); 
 			 $scope.task = { title : task.title, reminder : task.reminder, when : task.when, description : task.description };
