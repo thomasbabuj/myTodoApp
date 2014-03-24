@@ -113,6 +113,12 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 			scope : $scope	
 		});
 
+		$ionicModal.fromTemplateUrl('task-details.html', function(modal){
+			$scope.taskDetailsModal = modal;
+		} , {
+			scope : $scope
+		});
+
 		$scope.createTask = function(task) {
 
 			if (!$scope.activeProject || !task) {
@@ -150,8 +156,12 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 			Projects.save($scope.projects);
 			task.title = "";
 			 //$scope.projects[0].tasks[$scope.currentProjectTaskId].title
-			 
+		}
 
+		$scope.showTaskDetail = function(task) {
+			alert("I am in show Detail Modal");
+			$scope.task = task;
+			$scope.taskDetailsModal.show();
 		}
 
 		$scope.closeNewTask = function() {
@@ -159,6 +169,10 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 		}
 		$scope.closeEditTask = function() {
 			$scope.editModal.hide();
+		}
+
+		$scope.closeTaskDetail = function() {
+			$scope.taskDetailsModal.hide();
 		}
 
 		$scope.toggleProjects = function() {

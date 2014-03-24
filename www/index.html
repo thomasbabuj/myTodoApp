@@ -33,7 +33,7 @@
 			<!-- Task list -->
 			<ion-list option-buttons="taskButtons">
         		<ion-item ng-repeat="task in activeProject.tasks" 
-                 	 item="task">
+                 	 item="task"  ng-click="showTaskDetail(task)" >
           				 {{ task.title }}
         		</ion-item>
       		</ion-list>
@@ -102,6 +102,33 @@
 						<button type="submit" class="button button-block button-positive">Edit Task</button>
 					</div>
 				</form>
+			</ion-content>
+		</div>
+	</script>
+
+	<script id="task-details.html" type="text/ng-template">
+		<div class="modal">
+			<!-- Model header -->
+			<div class="bar bar-header bar-secondary">
+				<h1 class="title">{{task.title}}</h1>
+				<button class="button button-clear button-positive" ng-click="closeTaskDetail()">Cancel</button>
+			</div>
+
+			<!-- Model content -->
+			<ion-content has-header="true">
+				<div class="card">
+					<div class="item item-text-wrap">
+						This is the test banner
+					</div>
+					<div class="item item-text-wrap">
+						12-Apr-2014 10:00 AM
+					</div>
+					<div class="item item-text-wrap">
+						80 Anson Road,
+						Singapore.
+					</div>
+
+				</div>
 			</ion-content>
 		</div>
 	</script>
