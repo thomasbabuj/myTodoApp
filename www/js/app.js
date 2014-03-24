@@ -182,6 +182,10 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 			 //$scope.projects[0].tasks[$scope.currentProjectTaskId].title
 		}
 
+		$scope.capitaliseFirstLetter = function(string) {
+			return string.charAt(0).toUpperCase()+ string.slice(1);
+		}
+
 		$scope.showTaskDetail = function(task) {
 			$scope.task = task;
 			$scope.taskDetailsModal.show();
