@@ -86,6 +86,9 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 		// Grab the last active, or the first project
 		$scope.activeProject = $scope.projects[Projects.getLastActiveIndex()];
 
+		//$scope.taskLength = $scope.activeProject.tasks.length;
+		
+
 		// Called to create a new project
 		$scope.newProject = function() {
 			var projectTitle = prompt('Project name');
@@ -121,19 +124,25 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 
 		$scope.createTask = function(task) {
 
+			alert( "Title " + task.title + " Reminder = " + task.remainder + " When =" + task.date);
+
+
 			if (!$scope.activeProject || !task) {
 				return;
 			}
 
 			$scope.activeProject.tasks.push({
-				title : task.title
+				title : task.title,
+				reminder : task.remainder,
+				when : task.when,
+				description : task.description
 			});
 
 			$scope.taskModal.hide();
 
 			Projects.save($scope.projects);
 
-			task.title = "";
+			task.title = ""; 
 		};
 
 
@@ -145,21 +154,35 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 
 			var currentProjectTask = $scope.activeProject.tasks;
 			 $scope.currentProjectTaskId = currentProjectTask.indexOf(task); 
-			 $scope.task = { title : task.title };
+			 $scope.task = { title : task.title, reminder : task.reminder, when : task.when, description : task.description };
 			 $scope.editModal.show();
 		}
 
 		$scope.editSaveTask = function(task) {
 
 			$scope.activeProject.tasks[$scope.currentProjectTaskId].title = task.title;
+
+
+			$scope.activeProject.tasks[$scope.currentProjectTaskId].reminder = task.reminder;
+
+			if ( task.reminder ) {
+				$scope.activeProject.tasks[$scope.currentProjectTaskId].when = task.when;
+			} else {
+				$scope.activeProject.tasks[$scope.currentProjectTaskId].when = "";
+			}
+
+			$scope.activeProject.tasks[$scope.currentProjectTaskId].description = task.description;
+
 			$scope.editModal.hide();
 			Projects.save($scope.projects);
 			task.title = "";
+			task.reminder = "";
+			task.when = "";
+			task.description = "";
 			 //$scope.projects[0].tasks[$scope.currentProjectTaskId].title
 		}
 
 		$scope.showTaskDetail = function(task) {
-			alert("I am in show Detail Modal");
 			$scope.task = task;
 			$scope.taskDetailsModal.show();
 		}

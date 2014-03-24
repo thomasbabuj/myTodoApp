@@ -51,7 +51,7 @@
 			<ion-content has-header="true" scroll="false">
 				<ion-list>
 					<ion-item ng-repeat="project in projects" ng-click="selectProject(project, $index)" ng-class="{active: activeProject == project}">
-						{{project.title}}
+						{{project.title}}  
 					</ion-item>
 				</ion-list>
 			</ion-content>
@@ -73,6 +73,21 @@
 						<label class="item item-input">
 							<input type="text" placeholder="What do you need to do?" ng-model="task.title">
 						</label>
+						<label class="item item-toggle">
+							Reminder
+							<label class="toggle">
+								<input type="checkbox" ng-model="task.reminder">
+								<div class="track">
+									<div class="handle"></div>
+								</div>
+							</label>
+						</label>
+						<label class="item item-input" ng-show="task.reminder">
+							<input type="text" placeholder="when you want to save this task?" ng-model="task.when">
+						</label>
+						<label class="item item-input">
+							<textarea placeholder="Add more description" ng-model="task.description"></textarea>
+						</label>
 					</div>
 					<div class="padding">
 						<button type="submit" class="button button-block button-positive">Create Task</button>
@@ -93,11 +108,29 @@
 			<!-- Model content -->
 			<ion-content has-header="true">
 				<form ng-submit="editSaveTask(task)">
+
 					<div class="list">
 						<label class="item item-input">
 							<input type="text" placeholder="What do you need to do?" ng-model="task.title">
 						</label>
+						<label class="item item-toggle">
+							Reminder
+							<label class="toggle">
+								<input type="checkbox" ng-model="task.reminder">
+								<div class="track">
+									<div class="handle"></div>
+								</div>
+							</label>
+						</label>
+						<label class="item item-input" ng-show="task.reminder">
+							<input type="text" placeholder="when you want to save this task?" ng-model="task.when">
+						</label>
+						<label class="item item-input">
+							<textarea placeholder="Add more description" ng-model="task.description"></textarea>
+						</label>
 					</div>
+
+
 					<div class="padding">
 						<button type="submit" class="button button-block button-positive">Edit Task</button>
 					</div>
@@ -118,16 +151,11 @@
 			<ion-content has-header="true">
 				<div class="card">
 					<div class="item item-text-wrap">
-						This is the test banner
+						{{task.description}}
 					</div>
 					<div class="item item-text-wrap">
-						12-Apr-2014 10:00 AM
+						{{task.when}}						
 					</div>
-					<div class="item item-text-wrap">
-						80 Anson Road,
-						Singapore.
-					</div>
-
 				</div>
 			</ion-content>
 		</div>
