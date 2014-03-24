@@ -62,15 +62,26 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 	      type: 'button-assertive',
 	      onTap: function(task) {
 		        var currentProjectTask = $scope.activeProject.tasks;
-						
 				currentProjectTask.splice ( currentProjectTask.indexOf(task), 1);
 				Projects.save($scope.projects);
 	      }
 
-	    }];
+	    },
+
+	    {
+	      text: 'Edit',
+	      type: 'button-calm',
+	      onTap: function(task) {
+	        	$scope.onEditTask (task);
+	      }
+	    }
+
+	    ];
 
 		// Load or Initializze projects
 		$scope.projects = Projects.all();
+
+		$scope.currentProjectTaskId  = {};
 		
 		// Grab the last active, or the first project
 		$scope.activeProject = $scope.projects[Projects.getLastActiveIndex()];
@@ -96,7 +107,14 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 			scope : $scope
 		});
 
+		$ionicModal.fromTemplateUrl('edit-task.html', function(modal){
+			$scope.editModal = modal;
+		}, {
+			scope : $scope	
+		});
+
 		$scope.createTask = function(task) {
+
 			if (!$scope.activeProject || !task) {
 				return;
 			}
@@ -117,8 +135,30 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 			$scope.taskModal.show();
 		}
 
+		$scope.onEditTask = function(task){
+
+			var currentProjectTask = $scope.activeProject.tasks;
+			 $scope.currentProjectTaskId = currentProjectTask.indexOf(task); 
+			 $scope.task = { title : task.title };
+			 $scope.editModal.show();
+		}
+
+		$scope.editSaveTask = function(task) {
+
+			$scope.activeProject.tasks[$scope.currentProjectTaskId].title = task.title;
+			$scope.editModal.hide();
+			Projects.save($scope.projects);
+			task.title = "";
+			 //$scope.projects[0].tasks[$scope.currentProjectTaskId].title
+			 
+
+		}
+
 		$scope.closeNewTask = function() {
 			$scope.taskModal.hide();
+		}
+		$scope.closeEditTask = function() {
+			$scope.editModal.hide();
 		}
 
 		$scope.toggleProjects = function() {

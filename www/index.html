@@ -81,5 +81,29 @@
 			</ion-content>
 		</div>
 	</script>
+
+	<script id="edit-task.html" type="text/ng-template">
+		<div class="modal">
+			<!-- Model header -->
+			<div class="bar bar-header bar-secondary">
+				<h1 class="title">Edit Task</h1>
+				<button class="button button-clear button-positive" ng-click="closeEditTask()">Cancel</button>
+			</div>
+
+			<!-- Model content -->
+			<ion-content has-header="true">
+				<form ng-submit="editSaveTask(task)">
+					<div class="list">
+						<label class="item item-input">
+							<input type="text" placeholder="What do you need to do?" ng-model="task.title">
+						</label>
+					</div>
+					<div class="padding">
+						<button type="submit" class="button button-block button-positive">Edit Task</button>
+					</div>
+				</form>
+			</ion-content>
+		</div>
+	</script>
 </body>
 </html>
