@@ -155,31 +155,31 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 
 			var currentProjectTask = $scope.activeProject.tasks;
 			 $scope.currentProjectTaskId = currentProjectTask.indexOf(task); 
-			 $scope.task = { title : task.title, reminder : task.reminder, when : task.when, description : task.description };
+			 $scope.editTask = { title : task.title, reminder : task.reminder, when : task.when, description : task.description };
 			 $scope.editModal.show();
 		}
 
-		$scope.editSaveTask = function(task) {
+		$scope.editSaveTask = function(editTask) {
 
-			$scope.activeProject.tasks[$scope.currentProjectTaskId].title = task.title;
+			$scope.activeProject.tasks[$scope.currentProjectTaskId].title = editTask.title;
 
 
-			$scope.activeProject.tasks[$scope.currentProjectTaskId].reminder = task.reminder;
+			$scope.activeProject.tasks[$scope.currentProjectTaskId].reminder = editTask.reminder;
 
-			if ( task.reminder ) {
-				$scope.activeProject.tasks[$scope.currentProjectTaskId].when = task.when;
+			if ( editTask.reminder ) {
+				$scope.activeProject.tasks[$scope.currentProjectTaskId].when = editTask.when;
 			} else {
 				$scope.activeProject.tasks[$scope.currentProjectTaskId].when = "";
 			}
 
-			$scope.activeProject.tasks[$scope.currentProjectTaskId].description = task.description;
+			$scope.activeProject.tasks[$scope.currentProjectTaskId].description = editTask.description;
 
 			$scope.editModal.hide();
 			Projects.save($scope.projects);
-			task.title = "";
-			task.reminder = "";
-			task.when = "";
-			task.description = "";
+			editTask.title = "";
+			editTask.reminder = "";
+			editTask.when = "";
+			editTask.description = "";
 			 //$scope.projects[0].tasks[$scope.currentProjectTaskId].title
 		}
 

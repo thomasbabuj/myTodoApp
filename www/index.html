@@ -107,26 +107,26 @@
 
 			<!-- Model content -->
 			<ion-content has-header="true">
-				<form ng-submit="editSaveTask(task)">
+				<form ng-submit="editSaveTask(editTask)">
 
 					<div class="list">
 						<label class="item item-input">
-							<input type="text" placeholder="What do you need to do?" ng-model="task.title">
+							<input type="text" placeholder="What do you need to do?" ng-model="editTask.title">
 						</label>
 						<label class="item item-toggle">
 							Reminder
 							<label class="toggle">
-								<input type="checkbox" ng-model="task.reminder">
+								<input type="checkbox" ng-model="editTask.reminder">
 								<div class="track">
 									<div class="handle"></div>
 								</div>
 							</label>
 						</label>
-						<label class="item item-input" ng-show="task.reminder">
-							<input type="text" placeholder="when you want to save this task?" ng-model="task.when">
+						<label class="item item-input" ng-show="editTask.reminder">
+							<input type="text" placeholder="when you want to save this task?" ng-model="editTask.when">
 						</label>
 						<label class="item item-input">
-							<textarea placeholder="Add more description" ng-model="task.description"></textarea>
+							<textarea placeholder="Add more description" ng-model="editTask.description"></textarea>
 						</label>
 					</div>
 
