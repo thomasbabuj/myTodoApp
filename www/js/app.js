@@ -147,10 +147,7 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 
 
 		$scope.newTask = function() {
-			$scope.task.title = "";
-			$scope.task.reminder = false;
-			$scope.task.when = "";
-			$scope.task.description = "";
+			
 			$scope.taskModal.show();
 		}
 
