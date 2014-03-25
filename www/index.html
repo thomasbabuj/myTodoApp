@@ -33,8 +33,8 @@
 			<!-- Task list -->
 			<ion-list option-buttons="taskButtons">
         		<ion-item ng-repeat="task in activeProject.tasks" 
-                 	 item="task"  ng-click="showTaskDetail(task)" >
-          				 {{ task.title }}
+                 	 item="task"   ng-click="showTaskDetail(task)" >
+                 	 {{ task.title }}
         		</ion-item>
       		</ion-list>
       		</ion-content>
@@ -51,7 +51,7 @@
 			<ion-content has-header="true" scroll="false">
 				<ion-list>
 					<ion-item ng-repeat="project in projects" ng-click="selectProject(project, $index)" ng-class="{active: activeProject == project}">
-						{{project.title}}  
+						 {{project.title}}  
 					</ion-item>
 				</ion-list>
 			</ion-content>
@@ -64,6 +64,7 @@
 			<div class="bar bar-header bar-secondary">
 				<h1 class="title">New Task</h1>
 				<button class="button button-clear button-positive" ng-click="closeNewTask()">Cancel</button>
+				
 			</div>
 
 			<!-- Model content -->
@@ -83,7 +84,7 @@
 							</label>
 						</label>
 						<label class="item item-input" ng-show="task.reminder">
-							<input type="date" placeholder="when you want to save this task?" ng-model="task.when">
+							<input type="date" placeholder="when you want to save this task?" ng-model="task.when" >
 						</label>
 						<label class="item item-input">
 							<textarea placeholder="Add more description" ng-model="task.description"></textarea>
@@ -143,7 +144,7 @@
 		<div class="modal">
 			<!-- Model header -->
 			<div class="bar bar-header bar-secondary">
-				<h1 class="title">{{task.title}}</h1>
+				<h1 class="title">{{showTask.title}}</h1>
 				<button class="button button-clear button-positive" ng-click="closeTaskDetail()">Cancel</button>
 			</div>
 
@@ -151,10 +152,14 @@
 			<ion-content has-header="true">
 				<div class="card">
 					<div class="item item-text-wrap">
-						{{task.description}}
+						{{showTask.description}}
 					</div>
 					<div class="item item-text-wrap">
-						{{task.when}}						
+						{{showTask.when}}						
+					</div>
+					<div class="item item-text-wrap">
+						<p ng-show="showTask.isDone">Completed</p>
+						<p ng-show="!showTask.isDone">Not Completed</p>
 					</div>
 				</div>
 			</ion-content>

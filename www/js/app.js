@@ -48,6 +48,8 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 		// A utility function for creating a new project with
 		// the given projectTitle
 
+
+
 		var createProject = function(projectTitle) {
 			var newProject = Projects.newProject(projectTitle);
 			$scope.projects.push(newProject);
@@ -77,6 +79,26 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 	    }
 
 	    ];
+
+	  $scope.openCalender = function(){ 
+
+	  		alert( "I am in the calcender");
+
+		    // defining options
+		    var options = {
+		      date: new Date(),
+		      mode: 'date'
+		    };
+
+		    //This event is fired when the user has selected a date on the DatePicker
+		    datePicker.show(options, function(date){ 
+
+		    	alert( "In side the datepicker");
+		        $scope.date = date //Does not get updated!
+		        alert( "after the assignment");
+
+		    });
+	}
 
 		// Load or Initializze projects
 		$scope.projects = Projects.all();
@@ -132,7 +154,8 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 				title : task.title,
 				reminder : task.reminder,
 				when : task.when,
-				description : task.description
+				description : task.description,
+
 			});
 
 			$scope.taskModal.hide();
@@ -188,7 +211,8 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 		}
 
 		$scope.showTaskDetail = function(task) {
-			$scope.task = task;
+			
+			$scope.showTask = task;
 			$scope.taskDetailsModal.show();
 		}
 
