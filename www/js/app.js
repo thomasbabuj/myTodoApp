@@ -130,7 +130,7 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 
 			$scope.activeProject.tasks.push({
 				title : task.title,
-				reminder : task.remainder,
+				reminder : task.reminder,
 				when : task.when,
 				description : task.description
 			});
@@ -140,6 +140,9 @@ angular.module('todo', ['ionic'])  // Include the ionic module
 			Projects.save($scope.projects);
 
 			task.title = ""; 
+			task.reminder = false;
+			task.when = "";
+			task.description = "";
 		};
 
 
